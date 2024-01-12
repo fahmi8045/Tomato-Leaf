@@ -11,23 +11,25 @@ import helper
 
 # Setting page layout
 st.set_page_config(
-    page_title="Object Detection using YOLOv8",
-    page_icon="🤖",
+    page_title="Tomato Leaf Disease Detection",
+    page_icon="🍃",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # Main page heading
-st.title("Object Detection")
+image_path_main = "header/ImageHeader.jpg"
+st.image(image_path_main, use_column_width=False, width=500)
+st.title("Tomato Leaf Disease by Fahmi Azahar")
 st.caption('Upload a photo of TOMATO LEAF/LEAVES')
-st.caption('Then click the :blue[Detect Objects] button and check the result.')
+st.caption('Then click the :blue[Detect] button and check the result.')
 
 # Sidebar
-st.sidebar.header("ML Model Config")
+st.sidebar.header("ML Model Configuration")
 
 # Model Options
 model_type = st.sidebar.radio(
-    "Select Task", ['Detection', 'Segmentation'])
+    "Select Task", ['Detection'])
 
 confidence = float(st.sidebar.slider(
     "Select Model Confidence", 25, 100, 40)) / 100
@@ -35,8 +37,6 @@ confidence = float(st.sidebar.slider(
 # Selecting Detection Or Segmentation
 if model_type == 'Detection':
     model_path = Path(settings.DETECTION_MODEL)
-elif model_type == 'Segmentation':
-    model_path = Path(settings.SEGMENTATION_MODEL)
 
 # Load Pre-trained ML Model
 try:
@@ -45,7 +45,7 @@ except Exception as ex:
     st.error(f"Unable to load model. Check the specified path: {model_path}")
     st.error(ex)
 
-st.sidebar.header("Image/Video Config")
+st.sidebar.header("Image/Video Configuration")
 source_radio = st.sidebar.radio(
     "Select Source", settings.SOURCES_LIST)
 
@@ -68,7 +68,7 @@ if source_radio == settings.IMAGE:
             st.error(ex)
 
     with col2:
-            if st.sidebar.button('Detect Objects'):
+            if st.sidebar.button('Detect'):
                 res = model.predict(uploaded_image,
                                     conf=confidence
                                     )
