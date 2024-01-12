@@ -81,7 +81,7 @@ def play_youtube_video(conf, model):
 
     is_display_tracker, tracker = display_tracker_options()
 
-    if st.sidebar.button('Detect'):
+    if st.sidebar.button('Detect Objects'):
         try:
             yt = YouTube(source_youtube)
             stream = yt.streams.filter(file_extension="mp4", res=720).first()
@@ -121,7 +121,7 @@ def play_rtsp_stream(conf, model):
     """
     source_rtsp = st.sidebar.text_input("rtsp stream url")
     is_display_tracker, tracker = display_tracker_options()
-    if st.sidebar.button('Detect'):
+    if st.sidebar.button('Detect Objects'):
         try:
             vid_cap = cv2.VideoCapture(source_rtsp)
             st_frame = st.empty()
@@ -157,7 +157,7 @@ def play_webcam(conf, model):
     """
     source_webcam = settings.WEBCAM_PATH
     is_display_tracker, tracker = display_tracker_options()
-    if st.sidebar.button('Detect'):
+    if st.sidebar.button('Detect Objects'):
         try:
             vid_cap = cv2.VideoCapture(source_webcam)
             st_frame = st.empty()
