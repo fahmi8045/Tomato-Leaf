@@ -19,7 +19,7 @@ st.set_page_config(
 
 # Main page heading
 image_path_main = "header/ImageHeader.jpg"
-st.image(image_path_main, use_column_width=False, width=500)
+st.image(image_path_main, use_column_width=False, width=1000)
 st.title("Tomato Leaf Disease by Fahmi Azahar")
 st.caption('Upload a photo of TOMATO LEAF/LEAVES')
 st.caption('Then click the :blue[Detect] button and check the result.')
